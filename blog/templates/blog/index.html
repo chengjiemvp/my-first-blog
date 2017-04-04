@@ -1,5 +1,14 @@
 {% extends 'blog/base.html' %}
 
 {% block content %}
-			<p>--程杰</p>
+
+	<p>--程杰</p>
+	<p>2017年4月4号编写</p>
+{% for post in posts %}
+	<h1><a href="">{{post.title}}</a></h1>
+	<p>{{post.text|linebreaksbr}}</p>
+	<p>发布日期:{{post.published_date}}</p>
+{% endfor %}
+
 {% endblock content %}
+
