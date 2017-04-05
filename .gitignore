@@ -1,6 +1,15 @@
+<<<<<<< HEAD
 *.pyc
 __pyccache__
 db.sqlite3
 blog_env
 .DS_Store
 README.txt
+=======
+*.pyc
+__pyccache__
+db.sqlite3
+blog_env
+.DS_Store
+README.txt
+>>>>>>> 0ebf8c3e73c6e4ad2bdc37e13944465928278e6b
