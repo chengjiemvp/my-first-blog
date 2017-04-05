@@ -22,7 +22,8 @@ def new_article(request):
         #填写了数据，POST提交的数据
         form = PostForm(request.POST)
         if form.is_valid():
-            #在这里，因为post为
+            #在这里，因为post必须要有author这个主键，所以我们在保存前不提交，而是用另一个
+            #form_add来添加键然后再保存。
             form_add = form.save(commit=False)
             form_add.author=request.user
             form_add.published_date=timezone.now()
@@ -30,3 +31,19 @@ def new_article(request):
             return HttpResponseRedirect(reverse('blog:index'))
     context={'form':form}
     return render(request,'blog/new_article.html',context)
+def edit_article(request,post_id):
+    '''编辑已发表的文章'''
+    post = Post.objects.get(id=post_id)
+    if request.method != 'POST':
+        form = PostForm(instance=post)
+    else:
+        #填写了数据,POST提交的数据
+        form = PostForm(instance=post,data=request.POST)#这里面的instance和data都不能少，不写instance会导致更改文章就相当与添加了一篇新的文章。
+        if form.is_valid():
+            form_add = form.save(commit=False)
+            form_add.author=request.user
+            form_add.published_date=timezone.now()
+            form_add.save()
+            return HttpResponseRedirect(reverse('blog:index'))
+    context={'post':post,'form':form}
+    return render(request,'blog/edit_article.html',context)
