@@ -1,5 +1,6 @@
 *.pyc
 __pyccache__
+db.sqlite3
 blog_env
 .DS_Store
 README.txt
