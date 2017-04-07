@@ -2,13 +2,15 @@ from django.shortcuts import render
 from django.utils import timezone
 from django.http import HttpResponseRedirect
 from django.core.urlresolvers import reverse
+from django.contrib.auth.decorators import login_required
 
 from .models import Post
 from .forms import PostForm
 
 # Create your views here.
+@login_required
 def index(request):
-    '''个人博客的主页'''
+    '''个人博客的主页，显示所有文章'''
     posts=Post.objects.filter(published_date__lte=timezone.now()).order_by(
             '-published_date'
             )

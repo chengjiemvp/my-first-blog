@@ -19,4 +19,6 @@ from django.contrib import admin
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'',include('blog.urls',namespace='blog')),
+    #包含应用程序users定义的url
+    url(r'users/',include('users.urls',namespace='users')),
 ]
