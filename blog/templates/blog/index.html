@@ -1,15 +1,32 @@
-
 {% extends 'blog/base.html' %}
 
-{% block content %}
+{% block header %}
+	<h1>2017.4.4上线</h1>
+{% endblock header %}
 
-	<p>2017年4月4号上线</p>
+{% block content %}
+<p>
 	<a href="{% url 'blog:new_article' %}">编写新的文章</a>
+</p>
+
 {% for post in posts %}
-<h1><a href="{% url 'blog:look_over_article' post.id %}">{{post.title}}</a></h1>
-	<p>{{post.text|linebreaksbr}}</p>
-	<p>发布日期:{{post.published_date}}</p>
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			<h2>
+				<a href="{% url 'blog:look_over_article'  post.id %}">{{ post.title }}</a>
+			</h2>
+			<small>
+				<a>发表日期：{{ post.published_date }}</a>
+			</small>
+		</div>
+		<div class="panel-body">
+			{{post.text|linebreaks}}
+		</div>
+	</div>
+{% empty %}
+	没有任何文章可以查看
 {% endfor %}
 
-
 {% endblock content %}
+
+

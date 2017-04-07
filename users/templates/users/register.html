@@ -1,10 +1,22 @@
 {% extends 'blog/base.html' %}
+{% load bootstrap3 %}
+
+{% block header %}
+	<h2>注册一个个人账户</h2>
+	<small>个人账户可以查看所有文章，并发表新的文章</small>
+{% endblock header %}
 
 {% block content %}
-	<form method="post" action="{% url 'users:register' %}">
+	<form method="post" action="{% url 'users:register' %}" class="form">
 		{% csrf_token %}
-		{{ form.as_p }}
-		<button name="submit">注册</button>
+		<!-- {{ form.as_p }} -->
+		{% bootstrap_form form %}
+		
+		<!-- <button name="submit">注册</button> -->
+		{% buttons %}
+			<button name="submit" class="btn btn-primary">注册</button>
+		{% endbuttons %}
+		
 		<input type="hidden" name="next" value="{% url 'blog:index' %}" />
 	</form>
 {% endblock content %}

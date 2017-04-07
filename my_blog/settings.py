@@ -40,6 +40,8 @@ INSTALLED_APPS = [
     #我自己的应用程序
     'blog',
     'users',
+    #第三方应用程序
+    'bootstrap3',
 ]
 
 MIDDLEWARE = [
@@ -123,3 +125,7 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR,'static')
 LOGIN_URL='users/login/'
+#bootstrap3设置
+BOOTSTRAP3 = {
+        'include_jquery':True,
+        }
