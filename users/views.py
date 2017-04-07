@@ -23,7 +23,7 @@ def register(request):
             #让用户自动登陆
             authenticate_user = authenticate(
                     username=new_user.username,
-                    passwd=request.POST[passwd1]
+                    password=request.POST['password1']
                     )
             login(request,authenticate_user)
             return HttpResponseRedirect(reverse('blog:index'))

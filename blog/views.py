@@ -49,3 +49,8 @@ def edit_article(request,post_id):
             return HttpResponseRedirect(reverse('blog:index'))
     context={'post':post,'form':form}
     return render(request,'blog/edit_article.html',context)
+
+def look_over_article(request,post_id):
+    '''查看文章'''
+    post=Post.objects.get(id=post_id)
+    return render(request,'blog/look_over_article.html',{'post':post})
